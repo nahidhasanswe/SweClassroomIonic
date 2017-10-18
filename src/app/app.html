@@ -1,0 +1,44 @@
+<ion-menu id="sideMenuItems" [content]="content">
+  <ion-content class="side-menu-gradient">
+      <div class="sideMenu">
+        <div class="profile-image">
+            <img src="assets/Nahid.jpg"/>
+        </div>
+        <div class="text-center">
+            <h4>Nahid Hasan</h4>
+        </div>
+      </div>
+    <ion-list>
+        <ion-item class="side-menu-item">
+            Class Routine
+            <button menuClose ion-item class="buttonColor">
+                <ion-icon name="list-box"></ion-icon> My Routine
+            </button>
+            <button menuClose ion-item class="buttonColor" (click)="roomAllocation()">
+                <ion-icon name="add-circle"></ion-icon> Room Allocation List
+            </button>
+            <button menuClose ion-item class="buttonColor" >
+                <ion-icon name="close-circle"></ion-icon> Room Cancellation List
+            </button>
+            <button menuClose ion-item class="buttonColor" >
+                <ion-icon name="calendar"></ion-icon> Routine
+            </button>
+            Admin Panel
+            <button menuClose ion-item class="buttonColor" >
+                <ion-icon name="list"></ion-icon> Pending List
+            </button>
+            <button menuClose ion-item class="buttonColor" >
+                <ion-icon name="people"></ion-icon> Teacher List
+            </button>
+            Account Setting
+            <button menuClose ion-item class="buttonColor" >
+                <ion-icon name="key"></ion-icon> Change Password
+            </button>
+            <button menuClose ion-item class="buttonColor" (click)="logout()">
+                <ion-icon name="log-out"></ion-icon> Logout
+            </button>
+        </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #content [root]="rootPage"></ion-nav>
