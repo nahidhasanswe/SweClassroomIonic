@@ -7,25 +7,37 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RoomAllocationPage } from '../pages/room-allocation/room-allocation';
 
+import { AuthProvider } from '../providers/auth-providers/auth';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = LoginPage;
+
+  rootPage:any;
+  userName: any;
+
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-              private menu: MenuController) {
+              private menu: MenuController, private auth: AuthProvider) 
+  {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
+    if (this.auth.isAuthenticate()){
+      this.userName = this.auth.getUserName();
+      this.rootPage = HomePage;
+    }else {
+      this.rootPage = LoginPage;
+    }
+
   }
 
   logout() {
     this.menu.enable(false, 'sideMenuItems');
+    this.auth.logout();
     this.nav.setRoot(LoginPage);
   }
 
